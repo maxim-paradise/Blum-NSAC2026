@@ -15,7 +15,7 @@ COARENA_ANTHROPIC_BASE_URL = "https://coarena.ai/api"
 COARENA_OPENAI_BASE_URL = "https://coarena.ai/api/v1"
 COARENA_MODELS_URL = f"{COARENA_OPENAI_BASE_URL}/models"
 COARENA_FEEDBACK_URL = f"{COARENA_OPENAI_BASE_URL}/feedback"
-DEFAULT_MODEL = "gpt-6-luna"
+DEFAULT_MODEL = "deepseek-v4-1-flash-1017"
 DEFAULT_EFFORT = "medium"
 REQUEST_TIMEOUT_SEC = 60.0
 MAX_TOKENS = 2400
@@ -164,7 +164,7 @@ def list_models() -> list[dict[str, Any]]:
     """Fetch available models from Coarena API (no API key required)."""
     fallback = [{
         "id": DEFAULT_MODEL,
-        "display_name": "GPT-6 Luna",
+        "display_name": "DeepSeek V4.1 Flash",
         "efforts": ["none", "low", "medium", "high", "xhigh"],
         "reasoning": True,
     }]

@@ -57,7 +57,7 @@ def list_models() -> list[dict[str, Any]]:
 
     fallback = [{
         "id": DEFAULT_MODEL,
-        "display_name": "GPT-6 Luna",
+        "display_name": "DeepSeek V4.1 Flash",
         "efforts": ["none", "low", "medium", "high", "xhigh"],
         "reasoning": True,
     }]
@@ -89,7 +89,7 @@ def get_model_capabilities(model_id: str) -> dict[str, Any]:
             return m
     return {
         "id": model_id,
-        "display_name": "GPT-6 Luna" if model_id == DEFAULT_MODEL else model_id,
+        "display_name": "DeepSeek V4.1 Flash" if model_id == DEFAULT_MODEL else model_id,
         "efforts": ["none", "low", "medium", "high", "xhigh"],
         "reasoning": True,
     }
