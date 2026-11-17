@@ -107,18 +107,20 @@ export function App() {
                   {filteredSeries.length}/{data.series.length}
                 </span>
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveTab("ai");
-                  setSidebarCollapsed(false);
-                }}
-                aria-label="Open AI Agent"
-                className="psi-btn inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-strong)] bg-[var(--bg-card)]/95 px-2.5 py-1.5 text-xs font-medium text-[var(--ink)] hover:bg-[var(--bg-elevated)] md:hidden"
-              >
-                <Sparkles className="h-3.5 w-3.5 text-[var(--action)]" />
-                AI Agent
-              </button>
+              {agent.configured && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab("ai");
+                    setSidebarCollapsed(false);
+                  }}
+                  aria-label="Open AI Agent"
+                  className="psi-btn inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-strong)] bg-[var(--bg-card)]/95 px-2.5 py-1.5 text-xs font-medium text-[var(--ink)] hover:bg-[var(--bg-elevated)] md:hidden"
+                >
+                  <Sparkles className="h-3.5 w-3.5 text-[var(--action)]" />
+                  AI Agent
+                </button>
+              )}
             </div>
             <button
               type="button"

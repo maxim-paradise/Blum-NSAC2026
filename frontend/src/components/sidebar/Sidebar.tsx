@@ -51,8 +51,11 @@ export function Sidebar({
 }: SidebarProps) {
   if (collapsed) return null;
 
+  const aiEnabled = agent.configured;
+  const effectiveTab = aiEnabled ? activeTab : "filters";
+
   const widthClass =
-    activeTab === "ai"
+    effectiveTab === "ai"
       ? "w-full md:w-[460px] md:max-w-[92vw]"
       : "w-[88vw] max-w-[360px] md:w-[320px]";
 
@@ -97,34 +100,40 @@ export function Sidebar({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-1 rounded-lg border border-[var(--border)] bg-[var(--bg-subtle)] p-0.5">
+        <div
+          className={`grid gap-1 rounded-lg border border-[var(--border)] bg-[var(--bg-subtle)] p-0.5 ${
+            aiEnabled ? "grid-cols-2" : "grid-cols-1"
+          }`}
+        >
           <button
             type="button"
             onClick={() => onTabChange("filters")}
             className={`rounded-md py-1.5 text-xs font-medium transition-colors ${
-              activeTab === "filters"
+              effectiveTab === "filters"
                 ? "bg-[var(--bg-card)] text-[var(--ink)] shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
                 : "text-[var(--ink-muted)] hover:text-[var(--ink)]"
             }`}
           >
             Filters
           </button>
-          <button
-            type="button"
-            onClick={() => onTabChange("ai")}
-            className={`rounded-md py-1.5 text-xs font-medium transition-colors ${
-              activeTab === "ai"
-                ? "bg-[var(--bg-card)] text-[var(--ink)] shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
-                : "text-[var(--ink-muted)] hover:text-[var(--ink)]"
-            }`}
-          >
-            AI Agent
-          </button>
+          {aiEnabled && (
+            <button
+              type="button"
+              onClick={() => onTabChange("ai")}
+              className={`rounded-md py-1.5 text-xs font-medium transition-colors ${
+                effectiveTab === "ai"
+                  ? "bg-[var(--bg-card)] text-[var(--ink)] shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
+                  : "text-[var(--ink-muted)] hover:text-[var(--ink)]"
+              }`}
+            >
+              AI Agent
+            </button>
+          )}
         </div>
       </div>
 
       <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
-        {activeTab === "filters" ? (
+        {effectiveTab === "filters" ? (
           <FiltersTab
             filters={filters}
             maxTests={maxTests}
